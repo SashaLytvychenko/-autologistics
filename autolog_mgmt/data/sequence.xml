@@ -1,0 +1,17 @@
+<odoo>
+    <record id="ir_autolog_receive_car" model="ir.sequence">
+        <field name="name">Receive Car</field>
+        <field name="code">autolog.receive.car</field>
+        <field name="prefix">RC</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="ir_autolog_repair_car" model="ir.sequence">
+        <field name="name">Repair Car</field>
+        <field name="code">autolog.repair.car</field>
+        <field name="prefix">REP</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

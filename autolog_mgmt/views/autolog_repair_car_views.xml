@@ -1,0 +1,79 @@
+<odoo>
+    <record id="view_autolog_repair_car_tree" model="ir.ui.view">
+        <field name="name">autolog.repair.car.tree</field>
+        <field name="model">autolog.repair.car</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="reference"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_autolog_repair_car_form" model="ir.ui.view">
+        <field name="name">autolog.repair.car.form</field>
+        <field name="model">autolog.repair.car</field>
+        <field name="arch" type="xml">
+            <form string="Repair car">
+                <header>
+
+                </header>
+                <sheet>
+                    <div class = "oe_title">
+                        <h1>
+                            <field name = "priority" widget = "priority"
+                                   class ="mr-3"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="reference"/>
+                             <field name="services_ids" widget = "many2many_tags"/>
+                            <field name="repair_start_date"/>
+                            <field name="repair_end_date"/>
+
+                        </group>
+                        <group>
+                            <field name="reference_id"/>
+                             <field name='company_currency_id' invisible='1'/>
+                            <field name="services_price"
+                                   sum="Total"
+                                   options="{'currency_field': 'company_currency_id'}"/>
+                            <field name="repair_notes"/>
+
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"
+                           options="{'open_attachments': True}"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+     <record id="view_autolog_repair_car_pivot" model="ir.ui.view">
+        <field name="name">autolog.repair.car.pivot</field>
+        <field name="model">autolog.repair.car</field>
+        <field name="arch" type="xml">
+            <pivot string="Sales Orders" sample="1">
+                <field name="reference" type="row"/>
+                   <field name="create_date" interval="day" type="col"/>
+                <field name="services_price" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+
+    <record id="action_autolog_repair_car" model="ir.actions.act_window">
+        <field name="name">Repair car</field>
+        <field name="res_model">autolog.repair.car</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new repair!
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+autolog_mgmt.access_autolog_receive_car,access_autolog_receive_car,autolog_mgmt.model_autolog_receive_car,base.group_user,1,1,1,1
+autolog_mgmt.access_autolog_truck_driver,access_autolog_truck_driver,autolog_mgmt.model_autolog_truck_driver,base.group_user,1,1,1,1
+autolog_mgmt.access_autolog_car_brands,access_autolog_car_brands,autolog_mgmt.model_autolog_car_brands,base.group_user,1,1,1,1
+autolog_mgmt.access_autolog_repair_car,access_autolog_repair_car,autolog_mgmt.model_autolog_repair_car,base.group_user,1,1,1,1
+autolog_mgmt.access_autolog_car_dealer,access_autolog_car_dealer,autolog_mgmt.model_autolog_car_dealer,base.group_user,1,1,1,1
+autolog_mgmt.access_autolog_repair_car_service,access_autolog_repair_car_service,autolog_mgmt.model_autolog_repair_car_service,base.group_user,1,1,1,1

@@ -1,0 +1,179 @@
+<odoo>
+    <record id="view_autolog_receive_car_tree" model="ir.ui.view">
+        <field name="name">autolog.receive.car.tree</field>
+        <field name="model">autolog.receive.car</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="reference"/>
+                <field name="car_brand"/>
+                <field name="expected_arrival_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_autolog_receive_car_form" model="ir.ui.view">
+        <field name="name">autolog.receive.car.form</field>
+        <field name="model">autolog.receive.car</field>
+        <field name="arch" type="xml">
+            <form string="Patients">
+                <header>
+                    <button name="action_create_and_open_repair_record"
+                            type="object"
+                            string="Create repair"
+                            invisible="status !='repair'"
+                            class="oe_highlight"
+                            />
+                    <button name="action_in_stock" type="object"
+                            string="In stock"
+                            invisible="status !='draft'" class="oe_highlight"/>
+                    <button name="action_awaiting_decision" type="object"
+                            string="Awaiting decision"
+                            invisible="status !='in_stock'"
+                            class="oe_highlight"/>
+                     <button name="action_repair" type="object"
+                            string="Repair"
+                            invisible="status !='awaiting_decision'"
+                            class="oe_highlight"/>
+                     <button name="action_sent_to_dealer" type="object"
+                            string="Sent to dealer"
+                            invisible="status !='awaiting_decision' and
+                            status != 'repair'"
+                            class="oe_highlight"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            />
+                    <field name="status" widget="statusbar"
+                           options="{'clickable': '1'}"
+                           statusbar_visible = "draft,in_stock,awaiting_decision,repair,sent_to_dealer"/>
+                </header>
+                <sheet>
+                    <field name='image' widget='image' class='oe_avatar'/>
+                    <group>
+                        <group>
+                            <field name="reference"/>
+                            <field name="vin_code"/>
+                            <field name="car_brand"/>
+                            <field name="dealer_id"/>
+                        </group>
+                        <group>
+                            <field name="truck_driver_id"/>
+                            <field name="truck_number_id"/>
+                            <field name="expected_arrival_date"/>
+                            <field name="arrival_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="car_equipment" string='Car equipment'>
+                            <group col="3">
+                                <group string="Body type and engine characteristics">
+                                    <field name="body_type"/>
+                                    <field name="engine_type"/>
+                                    <field name="transmission" widget="radio"/>
+                                    <field name="engine_capacity"/>
+                                </group>
+                                <group string="Comfort options">
+                                    <field name="is_seat_heating"
+                                           widget="boolean_toggle"/>
+
+                                    <field name="is_wheel_heating"
+                                           widget="boolean_toggle"/>
+
+                                    <field name="cruise_control"/>
+
+                                    <field name="is_rearview_camera"
+                                           widget="boolean_toggle"/>
+
+                                    <field name="cruise_control"/>
+                                </group>
+                                <group string="Additional Specifications">
+                                    <field name="mileage"/>
+                                    <field name="manufacture_date"/>
+
+                                    <field name="is_service_book"
+                                           widget="boolean_toggle"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="remarks" string="Remarks">
+                            <group>
+                                <group>
+                                    <field name="is_remark"/>
+                                    <separator/>
+                                    <field name="remark_description" invisible ="is_remark !=True"/>
+                                </group>
+                                <group>
+                                    <field name="image_destr"
+                                           widget='image'
+                                           class='oe_avatar m-0'
+                                           options="{'zoom': true, 'preview_image':'avatar_256'}"/>
+                                </group>
+
+                            </group>
+                         </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"
+                           options="{'open_attachments': True}"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id='view_autolog_receive_car_search' model='ir.ui.view'>
+        <field name='name'>autolog.receive.car.search</field>
+        <field name='model'>autolog.receive.car</field>
+        <field name='arch' type='xml'>
+            <search>
+                <field name='vin_code' string='VIN Code'/>
+                <field name='car_brand'/>
+                <filter string='Status' name='status' domain="[]"
+                        context="{'group_by': 'status'}"/>
+                <separator/>
+                <filter string='Dealer' name='dealer' domain="[]"
+                        context="{'group_by': 'dealer_id'}"/>
+                <filter string='Truck driver' name='truck_driver' domain="[]"
+                        context="{'group_by': 'truck_driver_id'}"/>
+                <filter string="Status in stock"
+                        name="in_stock_status"
+                        domain="[('status','=','in_stock')]"
+                        help='This filter help you requests with in stock status'/>
+                <filter string="Status sent to dealer"
+                        name="sent_to_dealer_status"
+                        domain="[('status','=','sent_to_dealer')]"
+                        help='This filter help you requests with in sent to dealer status'/>
+                <separator/>
+                <filter string="Transmission manual"
+                        name="transmission_manual"
+                        domain="[('transmission','=','manual')]"
+                        help='This filter help you find cars with manual transmission'/>
+            </search>
+        </field>
+    </record>
+
+
+    <record id='view_autolog_receive_car_graph' model='ir.ui.view'>
+        <field name='name'>autolog.receive.car.graph</field>
+        <field name='model'>autolog.receive.car</field>
+        <field name='arch' type='xml'>
+            <graph string="Graph receive cars" sample="1" stacked="1">
+                <field name="car_brand"/>
+                <field name="dealer_id"/>
+                <field name="truck_driver_id"/>
+            </graph>
+        </field>
+    </record>
+
+
+    <record id="action_autolog_receive_car" model="ir.actions.act_window">
+        <field name="name">Receive car</field>
+        <field name="res_model">autolog.receive.car</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new request
+            </p>
+        </field>
+    </record>
+</odoo>

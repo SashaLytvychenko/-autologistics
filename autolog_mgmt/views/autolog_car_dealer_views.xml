@@ -1,0 +1,114 @@
+<odoo>
+    <record id="view_autolog_car_dealer_tree" model="ir.ui.view">
+        <field name="name">autolog.car.dealer.tree</field>
+        <field name="model">autolog.car.dealer</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_autolog_car_dealer_form" model="ir.ui.view">
+        <field name="name">autolog.car.dealer.form</field>
+        <field name="model">autolog.car.dealer</field>
+        <field name="arch" type="xml">
+            <form string="TCar dealer">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="contact_person_ids" mode = "kanban"/>
+                        </group>
+                        <group>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="address"/>
+                            <field name = "cars_quantity"/>
+                        </group>
+                    </group>
+                </sheet>
+                <notebook>
+                    <page name = "Received cars">
+                        <label for="cars_ids"/>
+                        <field name="cars_ids">
+                            <tree edit = "0">
+                                <field name="reference"/>
+                                <field name="vin_code"/>
+                                <field name="car_brand"/>
+                                <field name="truck_driver_id"/>
+                                <field name="arrival_date"/>
+                                  <field name="status"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"
+                           options="{'open_attachments': True}"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+
+
+
+    <record id="view_autolog_car_dealer_kanban" model="ir.ui.view">
+        <field name="name">autolog.car.dealer.kanban</field>
+        <field name="model">autolog.car.dealer</field>
+        <field name="arch" type="xml">
+               <kanban class="o_kanban_mobile" default_group_by = "address">
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                   <field name="address"/>
+                   <templates>
+                         <t t-name="kanban-menu">
+                        <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                        <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                        <ul class="oe_kanban_colorpicker" data-field="color"/>
+                    </t>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <strong><field name="name"/></strong>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <span class="badge rounded-pill"><t t-out="record.phone.value"/></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Email: </strong><t t-out="record.email.value"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+
+    <record id="action_autolog_car_dealer" model="ir.actions.act_window">
+        <field name="name">Car dealer</field>
+        <field name="res_model">autolog.car.dealer</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new car dealer!
+            </p>
+        </field>
+    </record>
+</odoo>

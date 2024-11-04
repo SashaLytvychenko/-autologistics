@@ -1,0 +1,56 @@
+<odoo>
+     <record id="view_autolog_car_brands_tree" model="ir.ui.view">
+        <field name="name">autolog.car.brands.tree</field>
+        <field name="model">autolog.car.brands</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="display_name" string="Car brands"/>
+            </tree>
+        </field>
+    </record>
+
+     <record id="view_autolog_car_brands_form" model="ir.ui.view">
+        <field name="name">autolog.car.brands.form</field>
+        <field name="model">autolog.car.brands</field>
+        <field name="arch" type="xml">
+            <form class="oe_form_configuration">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Model"/>
+                        <h1><field name="name" placeholder="e.g. Lamps"/></h1>
+                    </div>
+                    <group name="first" col="2">
+                        <field name="parent_id" class="oe_inline"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id='view_autolog_car_brands_search' model='ir.ui.view'>
+        <field name='name'>autolog.car.brands.search</field>
+        <field name='model'>autolog.car.brands</field>
+        <field name='arch' type='xml'>
+            <search>
+                <searchpanel>
+                    <field name='parent_id' string="Model"
+                           select='one' enable_counters="1"
+                           hierarchize="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_autolog_car_brands" model="ir.actions.act_window">
+        <field name="name">Car brands</field>
+        <field name="res_model">autolog.car.brands</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new car brand!
+            </p>
+        </field>
+    </record>
+</odoo>

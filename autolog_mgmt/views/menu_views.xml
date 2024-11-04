@@ -1,0 +1,69 @@
+<odoo>
+    <menuitem id="menu_autologistics_root"
+              web_icon='autolog_mgmt,static/description/icon.png'
+              name="Autologistics"
+
+    />
+
+    <menuitem id="menu_receive_car_main"
+              name="Received Cars"
+              parent="menu_autologistics_root"
+              sequence="20"
+    />
+
+    <menuitem id="menu_repair_car_main"
+              name="Car repair"
+              parent="menu_autologistics_root"
+              sequence="30"
+    />
+
+    <menuitem id="menu_car_dealer_main"
+              name="Car dealer"
+              parent="menu_autologistics_root"
+              sequence="40"
+    />
+
+    <menuitem id="menu_receive_car_request"
+              name="Receive requests"
+              parent="menu_receive_car_main"
+              action="action_autolog_receive_car"
+    />
+
+    <menuitem id="menu_repair_car_request"
+              name="Repair requests"
+              parent="menu_repair_car_main"
+              action="action_autolog_repair_car"
+    />
+
+    <menuitem id="menu_repair_car_service"
+              name="Car services"
+              parent="menu_repair_car_main"
+              action="action_autolog_repair_car_service"
+    />
+
+    <menuitem id="menu_truck_and_car_brands"
+              name="Truck and car brands"
+              parent="menu_autologistics_root"
+              sequence="40"
+    />
+
+    <menuitem id="menu_truck_driver"
+              name="Truck drivers"
+              parent="menu_truck_and_car_brands"
+              action="action_autolog_truck_driver"
+    />
+
+    <menuitem id="menu_car_brand"
+              name="Car brands"
+              parent="menu_truck_and_car_brands"
+              action="action_autolog_car_brands"
+    />
+
+    <menuitem id="menu_car_dealer"
+              name="Dealer"
+              parent="menu_car_dealer_main"
+              action="action_autolog_car_dealer"
+    />
+
+
+</odoo>

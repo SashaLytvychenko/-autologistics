@@ -1,0 +1,149 @@
+<odoo>
+    <!-- Define paper format for the report -->
+    <record id="autolog_receive_car_report_paperformat" model="report.paperformat">
+        <field name="name">A4 Autolog Receive Car Report</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">5</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <!-- Report action -->
+    <record id="autolog_receive_car_report" model="ir.actions.report">
+        <field name="name">Receive Car Report</field>
+        <field name="model">autolog.receive.car</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">autolog_mgmt.report_receive_car_main</field>
+        <field name="report_file">autolog_mgmt.report_receive_car_main</field>
+        <field name="binding_model_id" ref="model_autolog_receive_car"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="autolog_mgmt.autolog_receive_car_report_paperformat"/>
+    </record>
+
+    <!-- Header template for the company details -->
+   <template id="autolog_company_header_template">
+        <div style="text-align: center; padding: 10px;">
+            <t t-set="company" t-value="doc.env['res.company'].search([], limit=1)"/>
+            <img t-attf-src="/logo.png?company={{company.id}}" style="height: 50px;" t-att-alt="company.name"/>
+            <h4><t t-esc="company.name"/></h4>
+            <p>
+                <t t-esc="company.street"/> <br/>
+                <t t-esc="company.city"/>, <t t-esc="company.zip"/>, <t t-esc="company.country_id.name"/>
+            </p>
+            <p>Phone: <t t-esc="company.phone"/> | Email: <t t-esc="company.email"/></p>
+        </div>
+    </template>
+
+    <!-- Main template for the car details -->
+    <template id="autolog_receive_car_template">
+        <div style="padding: 20px;">
+            <h4 style="color: #2d3748;">Car Details - <t t-esc="doc.reference"/></h4>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="padding: 10px; width: 50%; vertical-align: top;">
+                        <p><strong>VIN Code:</strong> <t t-esc="doc.vin_code"/></p>
+                        <p><strong>Dealer Name:</strong> <t t-esc="doc.dealer_id.name"/></p>
+                        <p><strong>Driver Name:</strong> <t t-esc="doc.truck_driver_id.name"/></p>
+                        <p><strong>Truck Number:</strong> <t t-esc="doc.truck_number_id"/></p>
+                    </td>
+                    <td style="padding: 10px; width: 50%; text-align: center;">
+                        <!-- Display image if it exists -->
+                        <t t-if="doc.image">
+                         <img t-att-src="'data:image/png;base64,' + doc.image.decode('utf-8')" style="height: 50px;" alt="Car Image"/>
+                        </t>
+                    </td>
+                </tr>
+            </table>
+
+            <h5 style="color: #4a5568; margin-top: 20px;">Car Specifications</h5>
+            <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+                <tr style="background-color: #f7fafc;">
+                    <th style="padding: 8px; text-align: left;">Specification</th>
+                    <th style="padding: 8px; text-align: left;">Details</th>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Brand</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="doc.car_brand.name"/></td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Body Type</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="dict(doc.fields_get(allfields=['body_type'])['body_type']['selection'])[doc.body_type]"/></td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Engine Type</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="dict(doc.fields_get(allfields=['engine_type'])['engine_type']['selection'])[doc.engine_type]"/></td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Transmission</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="dict(doc.fields_get(allfields=['transmission'])['transmission']['selection'])[doc.transmission]"/></td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Mileage</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="doc.mileage"/> km</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Manufacture Date</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="doc.manufacture_date"/></td>
+                </tr>
+            </table>
+
+            <h5 style="color: #4a5568; margin-top: 20px;">Additional Features</h5>
+            <ul style="list-style-type: none; padding: 0;">
+                <li><strong>Seat Heating:</strong> <t t-esc="doc.is_seat_heating and 'Yes' or 'No'"/></li>
+                <li><strong>Steering Wheel Heating:</strong> <t t-esc="doc.is_wheel_heating and 'Yes' or 'No'"/></li>
+                <li><strong>Cruise Control:</strong> <t t-esc="dict(doc.fields_get(allfields=['cruise_control'])['cruise_control']['selection'])[doc.cruise_control]"/></li>
+                <li><strong>Rearview Camera:</strong> <t t-esc="doc.is_rearview_camera and 'Yes' or 'No'"/></li>
+                <li><strong>Parking Sensors:</strong> <t t-esc="dict(doc.fields_get(allfields=['parking_sensors'])['parking_sensors']['selection'])[doc.parking_sensors]"/></li>
+            </ul>
+
+            <h5 style="color: #4a5568; margin-top: 20px;">Status and Dates</h5>
+            <p><strong>Status:</strong> <t t-esc="dict(doc.fields_get(allfields=['status'])['status']['selection'])[doc.status]"/></p>
+            <p><strong>Expected Arrival Date:</strong> <t t-esc="doc.expected_arrival_date"/></p>
+            <p><strong>Arrival Date:</strong> <t t-esc="doc.arrival_date"/></p>
+
+            <t t-if="doc.is_remark">
+                <h5 style="color: #4a5568; margin-top: 20px;">Remarks</h5>
+                <p><strong>Remark Description:</strong> <t t-esc="doc.remark_description"/></p>
+            </t>
+        </div>
+    </template>
+
+
+    <template id="autolog_page_footer">
+        <t t-set="company"
+           t-value="doc.env['res.company'].search([], limit=1)"/>
+        <div style="text-align: center; position: fixed; bottom: 0; width: 100%;">
+            <p>
+                <strong>Printed:</strong>
+                <t t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>
+                |
+                <strong>City:</strong>
+                <t t-esc="company.city"/>
+            </p>
+        </div>
+    </template>
+
+
+        <template id="report_receive_car_main">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="row">
+                    <t t-call="autolog_mgmt.autolog_company_header_template"/>
+                </div>
+
+                <div class="row">
+                    <t t-call="autolog_mgmt.autolog_receive_car_template"/>
+                </div>
+
+                <t t-call="autolog_mgmt.autolog_page_footer"/>
+                <div class="page-break"></div>
+            </t>
+        </t>
+    </template>
+</odoo>
