@@ -37,7 +37,7 @@
                             <tree edit = "0">
                                 <field name="reference"/>
                                 <field name="vin_code"/>
-                                <field name="car_brand"/>
+                                <field name="car_brand_id"/>
                                 <field name="truck_driver_id"/>
                                 <field name="arrival_date"/>
                                   <field name="status"/>

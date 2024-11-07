@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_autolog_car_wizard_form" model="ir.ui.view">
+        <field name="name">autolog.car.wizard.form</field>
+        <field name="model">autolog.car.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Update Car Status">
+                <group>
+                    <field name="car_id" readonly="1"/>
+                    <field name="new_status" required="1"/>
+                </group>
+                <footer>
+                    <button string="Apply Changes" type="object" name="apply_changes" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

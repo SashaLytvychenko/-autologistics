@@ -1,0 +1,29 @@
+<odoo>
+    <record id="car_brand_bmw" model="autolog.car.brands">
+        <field name="name">BMW</field>
+    </record>
+
+    <record id="car_model_m4" model="autolog.car.brands">
+        <field name="name">M4</field>
+        <field name="parent_id" ref="car_brand_bmw"/>
+    </record>
+
+     <record id="car_brand_mercedes" model="autolog.car.brands">
+        <field name="name">MERCEDES</field>
+    </record>
+
+    <record id="car_model_g63" model="autolog.car.brands">
+        <field name="name">G63 AMG</field>
+        <field name="parent_id" ref="car_brand_mercedes"/>
+    </record>
+
+
+     <record id="car_brand_audi" model="autolog.car.brands">
+        <field name="name">AUDI</field>
+    </record>
+
+    <record id="car_model_a8" model="autolog.car.brands">
+        <field name="name">A8</field>
+        <field name="parent_id" ref="car_brand_audi"/>
+    </record>
+</odoo>

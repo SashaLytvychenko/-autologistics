@@ -1,0 +1,35 @@
+<odoo>
+
+    <record id="autolog_truck_driver_ivanov" model="autolog.truck.driver">
+        <field name="name">Petro Ivanov</field>
+        <field name="date_birth">1975-10-20</field>
+        <field name="phone">+380504531256</field>
+        <field name="driving_experience">5</field>
+        <field name="truck_number">AA4354QA</field>
+        <field name="image" type="base64"
+               file="autolog_mgmt/static/img/autolog_truck_driver_ivanov.jpg"/>
+    </record>
+
+     <record id="autolog_truck_driver_miller" model="autolog.truck.driver">
+        <field name="name">Max Miller</field>
+        <field name="date_birth">1993-8-27</field>
+        <field name="phone">+380503406510</field>
+        <field name="driving_experience">3</field>
+        <field name="truck_number">AA2345BA</field>
+        <field name="image" type="base64"
+               file="autolog_mgmt/static/img/autolog_truck_driver_miller.jpg"/>
+    </record>
+
+     <record id="autolog_truck_driver_bondar" model="autolog.truck.driver">
+        <field name="name">Fedor Bondar</field>
+        <field name="date_birth">1979-6-15</field>
+        <field name="phone">+380504531256</field>
+        <field name="driving_experience">7</field>
+        <field name="truck_number">AA5567FA</field>
+        <field name="image" type="base64"
+               file="autolog_mgmt/static/img/autolog_truck_driver_bondar.jpg"/>
+    </record>
+
+</odoo>
+
+

@@ -1,0 +1,36 @@
+<odoo>
+    <record id='autolog_dealer_bmw' model='autolog.car.dealer'>
+        <field name='name'>BMW DEALER</field>
+        <field name="contact_person_ids" eval="[Command.link(ref('base.res_partner_address_31')),
+         Command.link(ref('base.res_partner_address_4'))]"/>
+         <field name='phone'>+380671456705</field>
+         <field name='email'>bmw@dealer.com</field>
+        <field name='address'>Solomiynska 45B</field>
+
+    </record>
+
+
+
+    <record id='autolog_dealer_mercedes' model='autolog.car.dealer'>
+        <field name='name'>MERCEDES DEALER</field>
+        <field name="contact_person_ids" eval="[Command.link(ref('base.res_partner_address_15')),
+         Command.link(ref('base.res_partner_address_25'))]"/>
+         <field name='phone'>+380971233167</field>
+         <field name='email'>mercedes@dealer.com</field>
+        <field name='address'>Bogatyrska 27A</field>
+
+    </record>
+
+
+    <record id='autolog_dealer_audi' model='autolog.car.dealer'>
+        <field name='name'>AUDI DEALER</field>
+        <field name="contact_person_ids" eval="[Command.link(ref('base.res_partner_address_14')),
+         Command.link(ref('base.res_partner_address_34'))]"/>
+         <field name='phone'>+380733412890</field>
+         <field name='email'>audi@dealer.com</field>
+        <field name='address'>Ivana Sergiyenko 12D</field>
+    </record>
+</odoo>
+
+
+

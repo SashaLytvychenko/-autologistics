@@ -20,7 +20,6 @@ class AutologisticRepairCar(models.Model):
     reference_id = fields.Many2one(
         string="Received car reference",
         comodel_name="autolog.receive.car",
-        required=True,
         help="This repair applies to this application for receiving a car.",
     )
     repair_start_date = fields.Date(

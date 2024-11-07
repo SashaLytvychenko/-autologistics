@@ -1,0 +1,94 @@
+<odoo>
+
+    <record id="autolog_receive_car_bmw" model="autolog.receive.car">
+        <field name="reference">RC00001</field>
+        <field name="vin_code">4Y1-SL658-4-8-Z-4</field>
+        <field name="car_brand_id" ref="car_model_m4"/>
+        <field name="dealer_id" ref="autolog_dealer_bmw"/>
+        <field name="truck_driver_id" ref="autolog_truck_driver_ivanov"/>
+        <field name="image" type="base64"
+               file="autolog_mgmt/static/img/autolog_receive_car_bmw.jpeg"/>
+        <field name="expected_arrival_date">2024-11-25</field>
+        <field name="arrival_date">2024-11-25</field>
+        <field name="status">in_stock</field>
+        <field name="body_type">sedan</field>
+        <field name="engine_type">diesel</field>
+        <field name="engine_capacity">2.5</field>
+        <field name="transmission">automatic</field>
+        <field name="is_seat_heating">True</field>
+        <field name="is_wheel_heating">False</field>
+        <field name="cruise_control">adaptive</field>
+        <field name="is_rearview_camera">True</field>
+        <field name="parking_sensors">both</field>
+        <field name="mileage">50</field>
+        <field name="manufacture_date">2024-08-20</field>
+        <field name="is_remark">True</field>
+        <field name="remark_description">The car has a scratch on the body.
+        </field>
+        <field name="image_remark" type="base64"
+               file="autolog_mgmt/static/img/autolog_bmw_scratch.jpeg"/>
+    </record>
+
+     <record id="autolog_receive_car_mercedes" model="autolog.receive.car">
+        <field name="reference">RC00002</field>
+        <field name="vin_code">7TX-23SRF-R-8-N-1</field>
+        <field name="car_brand_id" ref="car_model_g63"/>
+        <field name="dealer_id" ref="autolog_dealer_mercedes"/>
+        <field name="truck_driver_id" ref="autolog_truck_driver_miller"/>
+        <field name="image" type="base64"
+               file="autolog_mgmt/static/img/autolog_receive_car_mercedes.jpeg"/>
+        <field name="expected_arrival_date">2024-11-10</field>
+        <field name="arrival_date">2024-11-15</field>
+        <field name="status">sent_to_dealer</field>
+        <field name="body_type">crossover</field>
+        <field name="engine_type">petrol</field>
+        <field name="engine_capacity">3.0</field>
+        <field name="transmission">automatic</field>
+        <field name="is_seat_heating">True</field>
+        <field name="is_wheel_heating">False</field>
+        <field name="cruise_control">standard</field>
+        <field name="is_rearview_camera">True</field>
+        <field name="parking_sensors">rear</field>
+        <field name="mileage">25</field>
+        <field name="manufacture_date">2024-07-25</field>
+        <field name="is_remark">False</field>
+    </record>
+
+    <record id="autolog_receive_car_audi" model="autolog.receive.car">
+        <field name="reference">RC00003</field>
+        <field name="vin_code">2FK-T2S6F-Y-4-N-2</field>
+        <field name="car_brand_id" ref="car_model_a8"/>
+        <field name="dealer_id" ref="autolog_dealer_audi"/>
+        <field name="truck_driver_id" ref="autolog_truck_driver_bondar"/>
+        <field name="image" type="base64"
+               file="autolog_mgmt/static/img/autolog_receive_car_audi.jpg"/>
+        <field name="expected_arrival_date">2024-11-5</field>
+        <field name="arrival_date">2024-11-15</field>
+        <field name="status">repair</field>
+        <field name="body_type">hatchback</field>
+        <field name="engine_type">petrol</field>
+        <field name="engine_capacity">3.5</field>
+        <field name="transmission">automatic</field>
+        <field name="is_seat_heating">True</field>
+        <field name="is_wheel_heating">True</field>
+        <field name="cruise_control">adaptive</field>
+        <field name="is_rearview_camera">True</field>
+        <field name="parking_sensors">front</field>
+        <field name="mileage">35</field>
+        <field name="manufacture_date">2024-06-17</field>
+        <field name="is_remark">True</field>
+        <field name="remark_description">There's a dent on the left side of the
+            car.
+        </field>
+        <field name="image_remark" type="base64"
+               file="autolog_mgmt/static/img/autolog_audi_dent.jpeg"/>
+    </record>
+
+
+</odoo>
+
+
+
+
+
+

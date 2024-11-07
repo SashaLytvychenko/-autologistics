@@ -12,9 +12,11 @@
     'external_dependencies': {
         'python': [],
     },
+
     'data': [
         'security/ir.model.access.csv',
         'data/sequence.xml',
+        'wizard/autolog_car_wizard_views.xml',
         'views/autolog_receive_car_views.xml',
         'views/autolog_repair_car_views.xml',
         'views/autolog_repair_car_service_views.xml',
@@ -24,10 +26,14 @@
         'views/menu_views.xml',
         'report/autolog_receive_car_report.xml',
 
-
     ],
     'demo': [
-
+        'demo/autolog_truck_driver_demo.xml',
+        'demo/autolog.repair.car.service.csv',
+        'demo/autolog_car_brands_demo.xml',
+        'demo/autolog_car_dealer_demo.xml',
+        'demo/autolog_receive_car_demo.xml',
+        'demo/autolog_repair_car_demo.xml',
 
     ],
 

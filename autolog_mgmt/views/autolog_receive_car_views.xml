@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="reference"/>
-                <field name="car_brand"/>
+                <field name="car_brand_id"/>
                 <field name="expected_arrival_date"/>
                 <field name="status"/>
             </tree>
@@ -18,6 +18,8 @@
         <field name="arch" type="xml">
             <form string="Patients">
                 <header>
+                    <button name="action_open_status_wizard" type="object"
+                              string="Update Status" class="oe_highlight"/>
                     <button name="action_create_and_open_repair_record"
                             type="object"
                             string="Create repair"
@@ -52,7 +54,7 @@
                         <group>
                             <field name="reference"/>
                             <field name="vin_code"/>
-                            <field name="car_brand"/>
+                            <field name="car_brand_id"/>
                             <field name="dealer_id"/>
                         </group>
                         <group>
@@ -102,12 +104,9 @@
                                     <field name="remark_description" invisible ="is_remark !=True"/>
                                 </group>
                                 <group>
-                                    <field name="image_destr"
-                                           widget='image'
-                                           class='oe_avatar m-0'
-                                           options="{'zoom': true, 'preview_image':'avatar_256'}"/>
+                                    <field name="image_remark"
+                                          widget='image'/>
                                 </group>
-
                             </group>
                          </page>
                     </notebook>
@@ -127,7 +126,7 @@
         <field name='arch' type='xml'>
             <search>
                 <field name='vin_code' string='VIN Code'/>
-                <field name='car_brand'/>
+                <field name='car_brand_id'/>
                 <filter string='Status' name='status' domain="[]"
                         context="{'group_by': 'status'}"/>
                 <separator/>
@@ -158,7 +157,7 @@
         <field name='model'>autolog.receive.car</field>
         <field name='arch' type='xml'>
             <graph string="Graph receive cars" sample="1" stacked="1">
-                <field name="car_brand"/>
+                <field name="car_brand_id"/>
                 <field name="dealer_id"/>
                 <field name="truck_driver_id"/>
             </graph>

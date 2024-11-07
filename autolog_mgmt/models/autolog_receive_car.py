@@ -30,7 +30,7 @@ class AutologisticCar(models.Model):
 
     image = fields.Image(
     )
-    car_brand = fields.Many2one(
+    car_brand_id = fields.Many2one(
         comodel_name="autolog.car.brands",
 
     )
@@ -129,7 +129,7 @@ class AutologisticCar(models.Model):
 
     )
 
-    image_destr = fields.Image(
+    image_remark = fields.Image(
 
     )
 
@@ -207,3 +207,16 @@ class AutologisticCar(models.Model):
     def action_cancel(self):
         for rec in self:
             rec.status = 'cancel'
+
+    def action_open_status_wizard(self):
+        """Open the wizard to update the car status."""
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Update Car Status'),
+            'view_mode': 'form',
+            'res_model': 'autolog.car.wizard',
+            'target': 'new',
+            'context': {
+                'default_car_id': self.id,
+            },
+        }
