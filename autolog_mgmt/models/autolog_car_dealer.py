@@ -5,6 +5,10 @@ from odoo.addons.payment_stripe.utils import format_shipping_address
 
 
 class AutologisticCarDealer(models.Model):
+    """
+    Model representing a car dealer's personal information, including
+    address, phone number, quantity of cars received, and complete car history.
+    """
     _name = 'autolog.car.dealer'
     _inherit = "mail.thread"
     _description = 'Car dealer'

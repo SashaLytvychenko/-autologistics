@@ -3,6 +3,10 @@ from odoo.exceptions import ValidationError
 
 
 class AutologisticTruckDriver(models.Model):
+    """
+    Model representing a truck driver record, which includes details
+    about the driver's personal information,trucks.
+    """
     _name = 'autolog.truck.driver'
     _inherit = "mail.thread"
     _description = 'Truck driver'
@@ -25,6 +29,10 @@ class AutologisticTruckDriver(models.Model):
     driving_experience = fields.Integer(
         string="Driving experience(years):",
         default=2,
+    )
+    user_id = fields.Many2one(
+        comodel_name = "res.users",
+        string = "Associated user",
     )
 
     @api.constrains('date_birth')

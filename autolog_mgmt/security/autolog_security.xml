@@ -1,0 +1,75 @@
+<odoo>
+    <record id="rule_autolog_receive_car_for_truck_driver" model="ir.rule">
+        <field name="name">Requests for truck driver</field>
+        <field name="model_id" ref="autolog_mgmt.model_autolog_receive_car"/>
+        <field name="domain_force">[('truck_driver_id.user_id', '=',
+            user.id)]
+        </field>
+        <field name="groups"
+               eval="[(4, ref('autolog_mgmt.group_autolog_truck_driver'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+
+
+    <record id="rule_autolog_receive_car_for_manager" model="ir.rule">
+        <field name="name">Requests for managers</field>
+        <field name="model_id"
+               ref="autolog_mgmt.model_autolog_receive_car"/>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        <field name="groups"
+               eval="[(4, ref('autolog_mgmt.group_autolog_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_autolog_receive_car_for_administrator" model="ir.rule">
+        <field name="name">Requests for administrators</field>
+        <field name="model_id"
+               ref="autolog_mgmt.model_autolog_receive_car"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups"
+               eval="[(4, ref('autolog_mgmt.group_autolog_administrator'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+
+      <record id="rule_autolog_repair_car_for_manager" model="ir.rule">
+        <field name="name">Repairs for managers</field>
+        <field name="model_id"
+               ref="autolog_mgmt.model_autolog_repair_car"/>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        <field name="groups"
+               eval="[(4, ref('autolog_mgmt.group_autolog_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_autolog_repair_car_for_administrator" model="ir.rule">
+        <field name="name">Repairs for administrators</field>
+        <field name="model_id"
+               ref="autolog_mgmt.model_autolog_repair_car"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups"
+               eval="[(4, ref('autolog_mgmt.group_autolog_administrator'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+
+
+
+
+</odoo>

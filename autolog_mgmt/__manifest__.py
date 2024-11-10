@@ -17,7 +17,9 @@
     },
 
     'data': [
+        'security/autolog_groups.xml',
         'security/ir.model.access.csv',
+        'security/autolog_security.xml',
         'data/sequence.xml',
         'wizard/autolog_car_wizard_views.xml',
         'views/autolog_receive_car_views.xml',

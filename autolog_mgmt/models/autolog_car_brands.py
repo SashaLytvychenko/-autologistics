@@ -3,6 +3,9 @@ from odoo.exceptions import ValidationError
 
 
 class AutologisticCarBrands(models.Model):
+    """
+        Model representing a car brands, by using hierarchical structure
+    """
     _name = 'autolog.car.brands'
     _inherit = "mail.thread"
     _description = 'Car brands'

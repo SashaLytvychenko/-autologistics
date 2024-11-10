@@ -3,6 +3,12 @@ from odoo.exceptions import ValidationError
 
 
 class AutologisticCar(models.Model):
+    """
+     Model representing the intake and tracking of cars in inventory, including
+     attributes, statuses, and locations. It enforces a unique VIN constraint,
+     restricts deletion unless in draft status, and includes actions for
+     updating statuses and creating repair records.
+    """
     _name = 'autolog.receive.car'
     _inherit = "mail.thread"
     _description = 'Receive car'
@@ -210,6 +216,8 @@ class AutologisticCar(models.Model):
 
     @api.onchange('status')
     def _in_stock_status(self):
+        """
+        """
         for rec in self:
             if rec.status == 'in_stock':
                 rec.arrival_date = fields.Date.today()
