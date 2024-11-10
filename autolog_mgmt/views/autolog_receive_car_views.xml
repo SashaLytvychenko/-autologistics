@@ -3,7 +3,7 @@
         <field name="name">autolog.receive.car.tree</field>
         <field name="model">autolog.receive.car</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree default_group_by="status" expand="1">
                 <field name="reference"/>
                 <field name="car_brand_id"/>
                 <field name="expected_arrival_date"/>
@@ -19,13 +19,13 @@
             <form string="Patients">
                 <header>
                     <button name="action_open_status_wizard" type="object"
-                              string="Update Status" class="oe_highlight"/>
+                            string="Update Status" class="oe_highlight"/>
                     <button name="action_create_and_open_repair_record"
                             type="object"
                             string="Create repair"
                             invisible="status !='repair'"
                             class="oe_highlight"
-                            />
+                    />
                     <button name="action_in_stock" type="object"
                             string="In stock"
                             invisible="status !='draft'" class="oe_highlight"/>
@@ -33,20 +33,20 @@
                             string="Awaiting decision"
                             invisible="status !='in_stock'"
                             class="oe_highlight"/>
-                     <button name="action_repair" type="object"
+                    <button name="action_repair" type="object"
                             string="Repair"
                             invisible="status !='awaiting_decision'"
                             class="oe_highlight"/>
-                     <button name="action_sent_to_dealer" type="object"
+                    <button name="action_sent_to_dealer" type="object"
                             string="Sent to dealer"
                             invisible="status !='awaiting_decision' and
                             status != 'repair'"
                             class="oe_highlight"/>
                     <button name="action_cancel" type="object" string="Cancel"
-                            />
+                    />
                     <field name="status" widget="statusbar"
                            options="{'clickable': '1'}"
-                           statusbar_visible = "draft,in_stock,awaiting_decision,repair,sent_to_dealer"/>
+                           statusbar_visible="draft,in_stock,awaiting_decision,repair,sent_to_dealer"/>
                 </header>
                 <sheet>
                     <field name='image' widget='image' class='oe_avatar'/>
@@ -62,6 +62,12 @@
                             <field name="truck_number_id"/>
                             <field name="expected_arrival_date"/>
                             <field name="arrival_date"/>
+                        </group>
+                        <separator/>
+                        <group string="Route details">
+                            <field name="importer_stock_id"/>
+                            <field name="our_stock_id"/>
+                            <field name="dealer_stock_id"/>
                         </group>
                     </group>
                     <notebook>
@@ -85,7 +91,6 @@
                                     <field name="is_rearview_camera"
                                            widget="boolean_toggle"/>
 
-                                    <field name="cruise_control"/>
                                 </group>
                                 <group string="Additional Specifications">
                                     <field name="mileage"/>
@@ -101,14 +106,16 @@
                                 <group>
                                     <field name="is_remark"/>
                                     <separator/>
-                                    <field name="remark_description" invisible ="is_remark !=True"/>
+                                    <field name="remark_description"
+                                           invisible="is_remark !=True"/>
                                 </group>
                                 <group>
                                     <field name="image_remark"
-                                          widget='image'/>
+                                           widget='image'
+                                     invisible="is_remark !=True"/>
                                 </group>
                             </group>
-                         </page>
+                        </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
@@ -151,6 +158,22 @@
         </field>
     </record>
 
+    <record id="view_autolog_receive_car_calendar" model="ir.ui.view">
+        <field name="name">autolog.receive.car.calendar</field>
+        <field name="model">autolog.receive.car</field>
+        <field name="arch" type="xml">
+            <calendar string='Receive cars' mode='month'
+                      scales='day,month,year' create='0'
+
+                      date_start='expected_arrival_date'
+                      date_stop='arrival_date' color='vin_code'
+                      event_open_popup='True'>
+                <field name='vin_code'/>
+                <field name='car_brand_id'/>
+            </calendar>
+        </field>
+    </record>
+
 
     <record id='view_autolog_receive_car_graph' model='ir.ui.view'>
         <field name='name'>autolog.receive.car.graph</field>
@@ -168,7 +191,7 @@
     <record id="action_autolog_receive_car" model="ir.actions.act_window">
         <field name="name">Receive car</field>
         <field name="res_model">autolog.receive.car</field>
-        <field name="view_mode">tree,form,graph</field>
+        <field name="view_mode">tree,form,calendar,graph</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new request

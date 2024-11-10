@@ -10,7 +10,7 @@
             fully repaired, eliminating any dents or scratches.
         </field>
         <field name='priority'>1</field>
-        <field name="services_ids" eval="[Command.link(ref('autolog_mgmt.autolog_service_bumper')),
+        <field name="product_ids" eval="[Command.link(ref('autolog_mgmt.autolog_service_bumper')),
          Command.link(ref('autolog_mgmt.autolog_service_left_door'))]"/>
     </record>
 
@@ -23,7 +23,7 @@
         <field name='repair_notes'>The bumper has been fully restored, and the front hood is now free of any dents or scratches, returning the vehicle to its original appearance.
         </field>
         <field name='priority'>2</field>
-        <field name="services_ids" eval="[Command.link(ref('autolog_mgmt.autolog_service_bumper')),
+        <field name="product_ids" eval="[Command.link(ref('autolog_mgmt.autolog_service_bumper')),
          Command.link(ref('autolog_mgmt.autolog_service_front_hood'))]"/>
     </record>
 

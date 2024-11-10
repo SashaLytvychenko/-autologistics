@@ -15,7 +15,7 @@
         <field name="name">autolog.car.dealer.form</field>
         <field name="model">autolog.car.dealer</field>
         <field name="arch" type="xml">
-            <form string="TCar dealer">
+            <form string="Car dealer">
                 <sheet>
                     <group>
                         <group>
@@ -32,7 +32,7 @@
                 </sheet>
                 <notebook>
                     <page name = "Received cars">
-                        <label for="cars_ids"/>
+<!--                        <label for="cars_ids"/>-->
                         <field name="cars_ids">
                             <tree edit = "0">
                                 <field name="reference"/>

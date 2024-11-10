@@ -1,6 +1,6 @@
-==========
+========================
 Autologistics Management
-==========
+========================
 
 This Odoo module provides a comprehensive system for managing car logistics, from receiving vehicles to handling repairs and maintaining records of dealer and driver information. The module is designed to streamline the process of car inventory management, service history tracking, and repair workflows within a logistics operation.
 

@@ -56,7 +56,7 @@ class AutologisticCarDealer(models.Model):
                         }
         return {}
 
-    @api.depends('cars_ids')
+    @api.onchange('cars_ids')
     def _compute_cars_quantity(self):
         for rec in self:
             rec.cars_quantity = len(rec.cars_ids.filtered(

@@ -1,0 +1,6 @@
+"id","name","detailed_type","list_price","default_code"
+"autolog_service_bumper","Scratch Repair on Rear Bumper","service","250","AUTO_BUMP1"
+"autolog_service_left_door","Dent Removal on Left Door","service","325","AUTO_DOOR1"
+"autolog_service_front_hood","Scratch Touch-Up on Front Hood","service","475","AUTO_HOOD1"
+
+

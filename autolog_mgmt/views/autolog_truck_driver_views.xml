@@ -60,7 +60,7 @@
                     <t t-name="kanban-tooltip">
                         <ul class="oe_kanban_tooltip">
                             <li t-if="record.phone.raw_value"><b>Phone number:</b> <t t-esc="record.phone.value"/></li>
-                            <li t-if="record.date_birth.raw_value"><b>Model Number:</b> <t t-esc="record.date_birth.value"/></li>
+                            <li t-if="record.date_birth.raw_value"><b>Date birth:</b> <t t-esc="record.date_birth.value"/></li>
                         </ul>
                     </t>
                     <t t-name="kanban-box">

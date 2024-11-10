@@ -2,12 +2,15 @@
     'name': 'Autologistics',
     'version': '17.0.1.0.0',
     'author': 'Sasha Lytvychenko',
+    'summary': 'Manage vehicle logistics, repairs, dealers, and drivers efficiently',
     'website': 'https://odoo.school/',
     'category': 'Customizations',
     'license': 'OPL-1',
     'depends': [
         'base',
         'mail',
+        'stock',
+        'sale',
     ],
     'external_dependencies': {
         'python': [],
@@ -19,7 +22,6 @@
         'wizard/autolog_car_wizard_views.xml',
         'views/autolog_receive_car_views.xml',
         'views/autolog_repair_car_views.xml',
-        'views/autolog_repair_car_service_views.xml',
         'views/autolog_truck_driver_views.xml',
         'views/autolog_car_brands_views.xml',
         'views/autolog_car_dealer_views.xml',
@@ -28,8 +30,8 @@
 
     ],
     'demo': [
+        'demo/product.product.csv',
         'demo/autolog_truck_driver_demo.xml',
-        'demo/autolog.repair.car.service.csv',
         'demo/autolog_car_brands_demo.xml',
         'demo/autolog_car_dealer_demo.xml',
         'demo/autolog_receive_car_demo.xml',

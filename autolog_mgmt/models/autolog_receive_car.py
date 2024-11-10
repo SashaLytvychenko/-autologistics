@@ -43,6 +43,26 @@ class AutologisticCar(models.Model):
         help="The actual date of the car's arrival in stock"
 
     )
+    importer_stock_id = fields.Many2one(
+        comodel_name="stock.location",
+        domain=[('usage', '=', 'supplier')],
+        help="This is the importer's warehouse from which we receive cars "
+             "to our warehouse",
+    )
+
+    our_stock_id = fields.Many2one(
+        comodel_name="stock.location",
+        domain=[('usage', '=', 'internal')],
+        help="This is our internal stock from which we ship car to the dealer",
+    )
+
+    dealer_stock_id = fields.Many2one(
+        comodel_name = "stock.location",
+        domain = [('usage', '=','customer')],
+        help = "This is dealer stock who receives cars from our warehouse"
+
+    )
+
 
     status = fields.Selection(
         selection=[('draft', 'Draft'),
@@ -187,6 +207,13 @@ class AutologisticCar(models.Model):
             'res_id': repair_record.id,
             'target': 'current',
         }
+
+    @api.onchange('status')
+    def _in_stock_status(self):
+        for rec in self:
+            if rec.status == 'in_stock':
+                rec.arrival_date = fields.Date.today()
+
 
     def action_in_stock(self):
         for rec in self:
