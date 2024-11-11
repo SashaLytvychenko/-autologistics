@@ -5,6 +5,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="reference"/>
+                <field name="status"/>
             </tree>
         </field>
     </record>
@@ -17,6 +18,13 @@
                 <header>
                     <button name="action_create_sale_order" type="object"
                             string="Create Quotation" class = "oe_highlight"/>
+                     <button name="action_awaiting_progress" type="object"
+                            string="In progress"
+                            invisible="status !='draft'" class="oe_highlight"/>
+                    <button name="action_done" type="object"
+                            string="Done"
+                            invisible="status !='in_progress'"
+                            class="oe_highlight"/>
                       <field name="status" widget="statusbar"
                            options="{'clickable': '1'}"
                            statusbar_visible="draft,in_progress,done"/>

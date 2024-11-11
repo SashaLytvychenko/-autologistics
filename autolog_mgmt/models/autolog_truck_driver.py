@@ -31,8 +31,8 @@ class AutologisticTruckDriver(models.Model):
         default=2,
     )
     user_id = fields.Many2one(
-        comodel_name = "res.users",
-        string = "Associated user",
+        comodel_name="res.users",
+        string="Associated user",
     )
 
     @api.constrains('date_birth')

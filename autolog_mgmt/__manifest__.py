@@ -2,7 +2,8 @@
     'name': 'Autologistics',
     'version': '17.0.1.0.0',
     'author': 'Sasha Lytvychenko',
-    'summary': 'Manage vehicle logistics, repairs, dealers, and drivers efficiently',
+    'summary': 'Manage vehicle logistics, repairs, dealers, and drivers'
+               ' efficiently',
     'website': 'https://odoo.school/',
     'category': 'Customizations',
     'license': 'OPL-1',
@@ -10,7 +11,7 @@
         'base',
         'mail',
         'stock',
-        'sale',
+        'sale_management',
     ],
     'external_dependencies': {
         'python': [],

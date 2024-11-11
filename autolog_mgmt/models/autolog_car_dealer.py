@@ -1,7 +1,4 @@
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
-
-from odoo.addons.payment_stripe.utils import format_shipping_address
 
 
 class AutologisticCarDealer(models.Model):

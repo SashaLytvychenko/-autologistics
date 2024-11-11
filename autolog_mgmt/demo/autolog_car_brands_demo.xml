@@ -8,7 +8,7 @@
         <field name="parent_id" ref="car_brand_bmw"/>
     </record>
 
-     <record id="car_brand_mercedes" model="autolog.car.brands">
+    <record id="car_brand_mercedes" model="autolog.car.brands">
         <field name="name">MERCEDES</field>
     </record>
 
@@ -18,7 +18,7 @@
     </record>
 
 
-     <record id="car_brand_audi" model="autolog.car.brands">
+    <record id="car_brand_audi" model="autolog.car.brands">
         <field name="name">AUDI</field>
     </record>
 

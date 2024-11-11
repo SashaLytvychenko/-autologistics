@@ -1,12 +1,6 @@
-from datetime import datetime
 from datetime import timedelta
-
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
 from odoo.exceptions import UserError
-import logging
-
-_logger = logging.getLogger(__name__)
 
 
 class AutologisticRepairCar(models.Model):
@@ -69,7 +63,8 @@ class AutologisticRepairCar(models.Model):
         ('0', 'Normal'),
         ('1', 'Low'),
         ('2', 'High'),
-        ('3', 'Very High')], string="Priority")
+        ('3', 'Very High')],
+    )
 
     repair_duration_days = fields.Integer(
         string="Repair Duration (Days)",
@@ -104,7 +99,8 @@ class AutologisticRepairCar(models.Model):
 
     @api.depends('product_ids')
     def _compute_total_price(self):
-        """Compute total price for all services/products selected for repair."""
+        """Compute total price for all services/products selected for repair.
+        """
         for repair in self:
             repair.total_price = sum(
                 product.list_price for product in repair.product_ids)
@@ -137,21 +133,20 @@ class AutologisticRepairCar(models.Model):
                         days=2)
 
     def action_create_sale_order(self):
-        for repair in self:
-            """
-                   Create a sale order for the repair if not already linked 
-                   and partner is specified.
+        """Create a sale order for the repair if not already linked
 
+                       and partner is specified.
                    Raises:
-                       UserError: If a sale order is already linked or if 
+                       UserError: If a sale order is already linked or if
                        partner is missing.
-
                    Returns:
                        dict: Action to open the sale order form view.
                    """
+        for repair in self:
             if repair.sale_order_id:
                 raise UserError(
-                    _("You cannot create a sale order for a repair that is already linked. "
+                    _("You cannot create a sale order for a repair that is "
+                      "already linked. "
 
                       "Affected repair: %s") % repair.reference
                 )
@@ -166,7 +161,8 @@ class AutologisticRepairCar(models.Model):
                 [('company_id', '=', repair.company_id.id)], limit=1)
             if not warehouse:
                 raise UserError(
-                    _("Warehouse is not defined for the company %s.") % repair.company_id.name)
+                    _("Warehouse is not defined for the company %s.") %
+                    repair.company_id.name)
 
             sale_order_values = {
                 "partner_id": repair.partner_id.id,
@@ -179,14 +175,15 @@ class AutologisticRepairCar(models.Model):
 
             if not repair.product_ids:
                 raise UserError(
-                    _("Repair %s does not have any linked products.") % repair.reference)
+                    _("Repair %s does not have any linked products.") %
+                    repair.reference)
 
             for product in repair.product_ids:
                 sale_order_line_values = {
                     "order_id": sale_order.id,
                     "product_id": product.id,
                     "name": product.display_name,
-                    "product_uom_qty": 1,  # Укажите нужное количество
+                    "product_uom_qty": 1,
                     "price_unit": product.list_price,
                 }
                 self.env['sale.order.line'].create(sale_order_line_values)
@@ -198,3 +195,11 @@ class AutologisticRepairCar(models.Model):
             'view_mode': 'form',
             'res_id': sale_order.id,
         }
+
+    def action_awaiting_progress(self):
+        for rec in self:
+            rec.status = 'in_progress'
+
+    def action_done(self):
+        for rec in self:
+            rec.status = 'done'

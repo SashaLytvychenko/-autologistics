@@ -1,11 +1,12 @@
-from odoo import models, fields, api, _
+from odoo import models, fields
+
 
 class AutologisticCarWizard(models.TransientModel):
     _name = 'autolog.car.wizard'
     _description = 'Wizard for Updating Car Status'
 
     car_id = fields.Many2one(
-        'autolog.receive.car',
+        comodel_name='autolog.receive.car',
         string="Car",
         required=True,
         readonly=True
@@ -16,8 +17,7 @@ class AutologisticCarWizard(models.TransientModel):
                    ('repair', 'Repair'),
                    ('sent_to_dealer', 'Sent to Dealer'),
                    ('cancel', 'Cancelled')],
-        string="New Status",
-        required=True
+        required=True,
     )
 
     def apply_changes(self):

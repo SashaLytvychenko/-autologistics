@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-10 12:49+0000\n"
-"PO-Revision-Date: 2024-11-10 12:49+0000\n"
+"POT-Creation-Date: 2024-11-11 16:53+0000\n"
+"PO-Revision-Date: 2024-11-11 16:53+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -177,6 +177,11 @@ msgid "Address"
 msgstr "Адреса"
 
 #. module: autolog_mgmt
+#: model:res.groups,name:autolog_mgmt.group_autolog_administrator
+msgid "Administrator"
+msgstr ""
+
+#. module: autolog_mgmt
 #: model_terms:ir.ui.view,arch_db:autolog_mgmt.view_autolog_car_wizard_form
 msgid "Apply Changes"
 msgstr "Підтвердити зміни"
@@ -185,6 +190,11 @@ msgstr "Підтвердити зміни"
 #: model:ir.model.fields,field_description:autolog_mgmt.field_autolog_receive_car__arrival_date
 msgid "Arrival Date"
 msgstr "Дата прибутття"
+
+#. module: autolog_mgmt
+#: model:ir.model.fields,field_description:autolog_mgmt.field_autolog_truck_driver__user_id
+msgid "Associated user"
+msgstr ""
 
 #. module: autolog_mgmt
 #: model:ir.model.fields,field_description:autolog_mgmt.field_autolog_car_brands__message_attachment_count
@@ -196,6 +206,7 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: autolog_mgmt
+#: model:ir.module.category,name:autolog_mgmt.category_autolog
 #: model:ir.ui.menu,name:autolog_mgmt.menu_autologistics_root
 msgid "Autologistics"
 msgstr "Автологістика"
@@ -447,6 +458,7 @@ msgstr ""
 
 #. module: autolog_mgmt
 #: model:ir.model.fields.selection,name:autolog_mgmt.selection__autolog_repair_car__status__done
+#: model_terms:ir.ui.view,arch_db:autolog_mgmt.view_autolog_repair_car_form
 msgid "Done"
 msgstr "Виконано"
 
@@ -533,6 +545,21 @@ msgid "Graph receive cars"
 msgstr ""
 
 #. module: autolog_mgmt
+#: model:res.groups,comment:autolog_mgmt.group_autolog_administrator
+msgid "Group for administrator"
+msgstr ""
+
+#. module: autolog_mgmt
+#: model:res.groups,comment:autolog_mgmt.group_autolog_manager
+msgid "Group for manager"
+msgstr ""
+
+#. module: autolog_mgmt
+#: model:res.groups,comment:autolog_mgmt.group_autolog_truck_driver
+msgid "Group for truck drivers"
+msgstr ""
+
+#. module: autolog_mgmt
 #: model:ir.model.fields,field_description:autolog_mgmt.field_autolog_car_brands__has_message
 #: model:ir.model.fields,field_description:autolog_mgmt.field_autolog_car_dealer__has_message
 #: model:ir.model.fields,field_description:autolog_mgmt.field_autolog_receive_car__has_message
@@ -612,6 +639,7 @@ msgstr "На складі"
 
 #. module: autolog_mgmt
 #: model:ir.model.fields.selection,name:autolog_mgmt.selection__autolog_repair_car__status__in_progress
+#: model_terms:ir.ui.view,arch_db:autolog_mgmt.view_autolog_repair_car_form
 msgid "In progress"
 msgstr "В процесі"
 
@@ -673,6 +701,11 @@ msgstr "Пов’язане замовлення на продаж для цьо
 #. module: autolog_mgmt
 #: model:ir.model.fields.selection,name:autolog_mgmt.selection__autolog_repair_car__priority__1
 msgid "Low"
+msgstr ""
+
+#. module: autolog_mgmt
+#: model:res.groups,name:autolog_mgmt.group_autolog_manager
+msgid "Manager"
 msgstr ""
 
 #. module: autolog_mgmt
@@ -1130,6 +1163,7 @@ msgstr "Автовози та бренди авто"
 #. module: autolog_mgmt
 #: model:ir.actions.act_window,name:autolog_mgmt.action_autolog_truck_driver
 #: model:ir.model,name:autolog_mgmt.model_autolog_truck_driver
+#: model:res.groups,name:autolog_mgmt.group_autolog_truck_driver
 #: model_terms:ir.ui.view,arch_db:autolog_mgmt.view_autolog_receive_car_search
 #: model_terms:ir.ui.view,arch_db:autolog_mgmt.view_autolog_truck_driver_form
 msgid "Truck driver"
@@ -1149,6 +1183,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:autolog_mgmt.view_autolog_receive_car_form
 msgid "Update Status"
 msgstr "Оновити статус"
+
+#. module: autolog_mgmt
+#: model:ir.module.category,description:autolog_mgmt.category_autolog
+msgid ""
+"User access levels for the Autologistics\n"
+"        "
+msgstr ""
 
 #. module: autolog_mgmt
 #: model:ir.model.fields,field_description:autolog_mgmt.field_autolog_receive_car__vin_code

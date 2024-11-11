@@ -1,5 +1,4 @@
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
 
 
 class AutologisticCarBrands(models.Model):
@@ -11,15 +10,31 @@ class AutologisticCarBrands(models.Model):
     _description = 'Car brands'
     _rec_name = 'complete_name'
 
-    name = fields.Char(string="Model", index='trigram', required=True)
+    name = fields.Char(
+        string="Model",
+        index='trigram',
+        required=True,
+    )
     complete_name = fields.Char(
-        'Complete Name', compute='_compute_complete_name', recursive=True,
-        store=True)
-    parent_id = fields.Many2one('autolog.car.brands', 'Brand',
-                                index=True, ondelete='cascade')
-    parent_path = fields.Char(index=True, unaccent=False)
-    child_id = fields.One2many('autolog.car.brands', 'parent_id',
-                               'Child Categories')
+        compute='_compute_complete_name',
+        recursive=True,
+        store=True,
+    )
+    parent_id = fields.Many2one(
+        comodel_name='autolog.car.brands',
+        string='Brand',
+        index=True,
+        ondelete='cascade',
+    )
+    parent_path = fields.Char(
+        index=True,
+        unaccent=False,
+    )
+    child_id = fields.One2many(
+        comodel_name='autolog.car.brands',
+        inverse_name='parent_id',
+        string='Child Categories',
+    )
 
     @api.depends('name', 'parent_id.complete_name')
     def _compute_complete_name(self):

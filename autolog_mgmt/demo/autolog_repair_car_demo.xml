@@ -2,6 +2,7 @@
 
     <record id='autolog_repair_car_bmw' model='autolog.repair.car'>
         <field name='reference'>REP00001</field>
+         <field name='status'>draft</field>
         <field name='reference_id' ref="autolog_receive_car_bmw"/>
         <field name='repair_start_date'>2024-11-27</field>
         <field name='repair_end_date'>2024-11-29</field>
@@ -17,6 +18,7 @@
 
     <record id='autolog_repair_car_audi' model='autolog.repair.car'>
         <field name='reference'>REP00003</field>
+         <field name='status'>in_progress</field>
         <field name='reference_id' ref="autolog_receive_car_audi"/>
         <field name='repair_start_date'>2024-11-16</field>
         <field name='repair_end_date'>2024-11-17</field>

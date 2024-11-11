@@ -63,12 +63,11 @@ class AutologisticCar(models.Model):
     )
 
     dealer_stock_id = fields.Many2one(
-        comodel_name = "stock.location",
-        domain = [('usage', '=','customer')],
-        help = "This is dealer stock who receives cars from our warehouse"
+        comodel_name="stock.location",
+        domain=[('usage', '=', 'customer')],
+        help="This is dealer stock who receives cars from our warehouse"
 
     )
-
 
     status = fields.Selection(
         selection=[('draft', 'Draft'),
@@ -221,7 +220,6 @@ class AutologisticCar(models.Model):
         for rec in self:
             if rec.status == 'in_stock':
                 rec.arrival_date = fields.Date.today()
-
 
     def action_in_stock(self):
         for rec in self:
